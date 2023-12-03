@@ -4,76 +4,70 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class UserController extends Controller
 {
+    public function index (){
+        $data1 =[
+            [
+            'nama'=> 'Jenny',
+            'email' => 'jejenurdianti@gmail.com',
+            'telp' => '085523701408',
+            'alamat' => [
+                'street' => 'buahbatu',
+                'postcode' => '112'
 
-    public function getData(request $request){
-        //nama = 'Jenny'
-        //email = 'jejenurdianti@gmail.com'
 
-        $nama =$request->get(key:'nama');
-        $request=$request->get(key:'email');
 
-        $arrNama = [
-            'nama'=>$nama,
-            'email'=>$email
+            ]
+
+            ]
         ];
-        return json_encode($arrNama);
-    }
-    public function createDataUser(Request $request) {
-        $post = $request ->post();
-        $nama = $request->post('nama');
-        $email= $request->post('email');
-        $no_telp= $request->post( 'no_telp');
 
-        $isValid = self ;; cekUser (username $arr['username']);
-        if ($isValid){
-            $res['status'] = true;
-            $res['message'] = 'Username Valid';
-        } else {
-            $res['status'] = false;
-            $res['message'] = 'Username Tidak Valid';
-        }
-    }
-        return $res;
+        $data2 =[
+            [
+            'nama'=> 'Naya',
+            'email' => 'naya@gmail.com',
+            'telp' => '0850000000',
+            'alamat' => [
+                'street' => 'blitar',
+                'postcode' => '001'
+            ]
+        ]
+        ];
 
-    private function cekUser($username){
-        if ($username == 'Jenny'){
-            return true;
-        } else {
-            return false;
-        }
+        $data3 =[
+            [
+            'nama'=> 'Muklis',
+            'email' => 'muklis@gmail.com',
+            'telp' => '0850000212121',
+            'alamat' => [
+                'street' => 'jakarta',
+                'postcode' => '5454'
+            ]
+        ]
+        ];
 
-    }
+        $data = array_merge($data1, $data2,$data3);
+        $id ='111';
 
-    public function editDataUser(Request $request) {
-        $post = $request ->post();
-        $nama = request->post( key 'nama' );
-        $email= request->post( key 'email' );
-        $no_telp= request->post( key 'no_telp' );
-
-        $isValid = self ;; cekUser (username $arr['username']);
-        if ($isValid){
-            $res['status'] = true;
-            $res['message'] = 'Username Valid';
-        } else {
-
-        }
+    return view ('user/user', compact ('data', 'id'));
 
     }
-
-        return $arr;
-
-    private function cekUser($username){
-        if ($username == 'Jenny'){
-            return true;
-        } else {
-            return false;
-        }
-
+    public function create(){
+        return view ('user.create');
     }
+
+    public function edit(){
+        return view ('user.edit');
+    }
+
+
+
+
+
 
 
 }
-
