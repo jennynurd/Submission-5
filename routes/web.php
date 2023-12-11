@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Books\BooksController;
 
 
 /*
@@ -36,7 +37,14 @@ Route::group(['prefix' => 'users'], function (){
     Route::get('/index/edit',[UserController::class, 'edit']);
 });
 
+Route::group(['prefix' => 'books'], function (){
+    Route::get('/index',[UserController::class, 'edit']);
+});
 
+Route::get('/books',[BooksController::class,'index']);
+Route::get('/books/create',[BooksController::class,'create']);
+Route::post('/books/store',[BooksController::class,'store']);
+Route::get('/books/edit',[BooksController::class,'edit']);
 
 
 
